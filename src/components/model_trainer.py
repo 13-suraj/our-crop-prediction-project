@@ -11,7 +11,6 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neighbors import KNeighborsClassifier
-from catboost import CatBoostClassifier
 
 from sklearn import metrics
 
@@ -40,44 +39,44 @@ class ModelTrainer:
                 "Random Forest" : RandomForestClassifier(),
                 "Logistic" : LogisticRegression(),
                 "K Neighbors" : KNeighborsClassifier(),
-                "Cat Boost" : CatBoostClassifier(verbose=False),
             }
 
             params = {
                 "Decision Tree" : {
-                  "criterion" : ['gini', 'entropy', 'log_loss'],
-                  "splitter" : ['best', 'random'],
-                  "max_features" : ['sqrt', 'log2']  
+                  "criterion" : ['gini', 'entropy'],
+                  "max_depth" : [5, 10, 20, None],
+                  "min_samples_split" : [2, 5, 10],
+                  "max_features" : ['sqrt', 'log2', None]  
                 },
                 "SVC" : {
-                    "kernel" : ['linear', 'poly', 'rbf', 'sigmoid', 'precomputed'],
-                    "gamma" : ['scale', 'auto']
+                    "kernel" : ['linear', 'poly', 'rbf'],
+                    "C" : [0.1, 1, 10],
+                    "gamma" : ['scale', 'auto'],
+                    "degree" : [2, 3] #Only Used for 'poly' kernel 
                 },
                 "Gaussian" : {
-                    'gnb__var_smoothing': [1e-9, 1e-10, 1e-11]
+                    'var_smoothing': [1e-9, 1e-10]
                 },
                 "Random Forest" : {
-                  "criterion" : ['gini', 'entropy', 'log_loss'],
-                  "class_weight" : ['balanced', 'balanced_subsample'],
-                  "max_features" : ['sqrt', 'log2', None]
+                  "n_estimators" : [50, 100],  
+                  "criterion" : ['gini', 'entropy'],
+                  "max_depth" : [10, 20, None],
+                  "max_features" : ['sqrt', 'log2'],
+                  "class_weight" : ['balanced']
                 },
                 "Logistic" : {
-                    "penalty" : ['l1', 'l2', 'elasticnet'],
-                    "solver" : ['lbfgs', 'liblinear', 'newton-cg', 'newton-cholesky', 'sag', 'saga']
+                    "penalty" : ['l2'],
+                    "C" : [0.1, 1, 10],
+                    "solver" : ['lbfgs', 'liblinear', 'saga']
                 },
                 "K Neighbors" : {
-                    'n_neighbors': range(1, 21),
-                    'weights': ['uniform', 'distance'],
-                    'metric': ['euclidean', 'manhattan']
-                },
-                "Cat Boost" : {
-                    'iterations': [30, 50, 100],
-                    'learning-rate' : [0.01, 0.05, 0.1],
-                    'depth': [6,8,10]
+                    "n_neighbors": [3, 5, 7, 9],
+                    "weights": ['uniform', 'distance'],
+                    "metric": ['euclidean', 'manhattan']
                 }
             }
 
-            model_report : dict = evaluate_models(X_train, y_train, X_test, y_test, models, params)
+            model_report : dict = evaluate_models(X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test, models=models, params=params)
 
             best_model_score = max(sorted(model_report.values()))
 
