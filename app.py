@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home_page():
-    render_template('index.html')
+    return render_template('index.html')
 
 @app.route('/predict', methods=["GET", "POST"])
 def predict_data():
@@ -18,7 +18,7 @@ def predict_data():
             P= int(request.form.get('P')),
             K= int(request.form.get('K')),
             temperature= float(request.form.get('temperature')),
-            humidity= float(request.form.get('humidty')),
+            humidity= float(request.form.get('humidity')),
             ph= float(request.form.get('ph')),
             rainfall= float(request.form.get('rainfall'))
         )
