@@ -4,19 +4,18 @@ from src.exception import OurException
 from src.logger import logging
 from src.utils import load_obj
 
-class PredictPipeline():
+class PredictPipeline:
     def __init__(self):
         pass
 
     def predict(self, features):
         try:
-            model_path = 'artifacts/model.pkl'
             preprocessor_path = 'artifacts/preprocessor.pkl'
-            model = load_obj(file_path=model_path)
+            model_path = 'artifacts/model.pkl'
             preprocessor = load_obj(file_path=preprocessor_path)
+            model = load_obj(file_path=model_path)
             data_scaled = preprocessor.transform(features)
             pred = model.predict(data_scaled)
-
             return pred 
 
         except Exception as e:

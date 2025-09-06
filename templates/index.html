@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Crop Prediction</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   </head>
   <body>
     <a href="https://github.com/13-suraj/our-crop-prediction-project" class="top-left-link" target="_blank">GitHub Repository Link</a>
     <h1>Crop Prediction - HexaByte Syndicate</h1>
-    <img src="{{url_for('static', filename='/Image/Project_main')}}" alt="Your Profile Picture" class="profile">
+    <img src="{{url_for('static', filename='Image/Project_main.jpg')}}" alt="Your Profile Picture" class="profile">
     <div class="form-box">
     <form action="{{url_for('predict_data')}}" method="POST">
         <div class="form-group">
@@ -28,6 +30,11 @@
         <div class="form-group">
             <label for="Temperature">Temperature:</label>
             <input type="text" id="temperature" name="temperature" placeholder="Enter temperature value (float)">
+        </div>
+
+        <div class="form-group">
+            <label for="Humidity">Humidity:</label>
+            <input type="text" id="humidity" name="humidity" placeholder="Enter Humidity value (float)">
         </div>
       
         <div class="form-group">

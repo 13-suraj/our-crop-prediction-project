@@ -6,5 +6,5 @@ seaborn
 catboost
 dill
 Flask
-pickle
+flask_cors
 # -e .
