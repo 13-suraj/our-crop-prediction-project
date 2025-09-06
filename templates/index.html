@@ -8,52 +8,53 @@
   </head>
   <body>
     <a href="https://github.com/13-suraj/our-crop-prediction-project" class="top-left-link" target="_blank">GitHub Repository Link</a>
+    
     <h1>Crop Prediction - HexaByte Syndicate</h1>
+    
     <img src="{{url_for('static', filename='Image/Project_main.jpg')}}" alt="Your Profile Picture" class="profile">
+    
     <div class="form-box">
-    <form action="{{url_for('predict_data')}}" method="POST">
+      <form action="{{url_for('predict_data')}}" method="POST" class="form-container">
+        
         <div class="form-group">
-            <label for="Nitrogen">Nitrogen:</label>
+            <label for="N">Nitrogen:</label>
             <input type="text" id="N" name="N" placeholder="Enter nitrogen value">
         </div>
-    
+
         <div class="form-group">
-            <label for="Phosphorous">Phosphorous:</label>
+            <label for="P">Phosphorous:</label>
             <input type="text" id="P" name="P" placeholder="Enter phosphorous value">
         </div>
 
         <div class="form-group">
-            <label for="Potassium">Potassium:</label>
+            <label for="K">Potassium:</label>
             <input type="text" id="K" name="K" placeholder="Enter potassium value">
         </div>
-        
+
         <div class="form-group">
-            <label for="Temperature">Temperature:</label>
+            <label for="temperature">Temperature:</label>
             <input type="text" id="temperature" name="temperature" placeholder="Enter temperature value (float)">
         </div>
 
         <div class="form-group">
-            <label for="Humidity">Humidity:</label>
-            <input type="text" id="humidity" name="humidity" placeholder="Enter Humidity value (float)">
+            <label for="humidity">Humidity:</label>
+            <input type="text" id="humidity" name="humidity" placeholder="Enter humidity value (float)">
         </div>
-      
+
         <div class="form-group">
-            <label for="pH">pH:</label>
+            <label for="ph">pH:</label>
             <input type="text" id="ph" name="ph" placeholder="Enter pH value (float)">
         </div>
-      
+
         <div class="form-group">
-            <label for="Rainfall">Rainfall:</label>
+            <label for="rainfall">Rainfall:</label>
             <input type="text" id="rainfall" name="rainfall" placeholder="Enter rainfall value (float)">
-        </div>  
-      
-    <div style="clear:both;"></div>
-      <input type="submit" value="Submit">
-    </form>
+        </div>
+
+        <input type="submit" value="Submit">
+      </form>
     </div>
-    <div>      
-    <h2>
-      Recommended Crop is : {{ results }}
-    </h2>
+
+    <h2>Recommended Crop is : {{ results }}</h2>
   </body>
 </html>
