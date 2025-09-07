@@ -7,4 +7,5 @@ catboost
 dill
 Flask
 flask_cors
+gunicorn
 # -e .
