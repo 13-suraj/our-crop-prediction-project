@@ -31,7 +31,7 @@ def predict_data():
         predict_pipeline = PredictPipeline()
         results = predict_pipeline.predict(pred_df)
 
-        return render_template('index.html', results=results[0])
+        return render_template('index.html', results=results[0].capitalize())
     
 if __name__ == '__main__':
     print("About to start Flask server...")
